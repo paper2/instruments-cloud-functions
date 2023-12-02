@@ -13,6 +13,8 @@ import (
 )
 
 func init() {
+	// NOTE: Usually TraceProvider should call Shutdown() at the end of the program.
+	//       It is mitigted by using ForceFlush() in InstrumentedHandler.
 	tracerProvider := InitTracing()
 	handler := InstrumentedHandler("greeting", greeting, tracerProvider)
 	functions.HTTP("Greeting", handler)
@@ -31,6 +33,7 @@ func greeting(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// greetNext calls the next function.
 func greetNext(ctx context.Context) error {
 	next := os.Getenv("NEXT_ENDPOINT")
 	if next == "" {

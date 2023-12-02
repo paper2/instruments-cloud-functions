@@ -1,5 +1,5 @@
 # OpenTelemetry Go Cloud Functions Example
-This is an example of OpenTelemetry Go Cloud Functions.
+This is an example of OpenTelemetry Go Google Cloud Functions HTTP trigger.
 
 # Prerequisites
 - Docker
@@ -15,13 +15,13 @@ vi deploy.sh
 ./deploy.sh
 ```
 
-Save URL of the deployed OpenTelemetry Collector.
+Save URL of the deployed OpenTelemetry collector.
 
 ## Deploy Cloud Functions
 
 ```bash
 cd greeting
-# Set your project id and OpenTelemetry Collector URL
+# Set your project id and OpenTelemetry collector URL
 vi env-greeting-1.yaml
 vi env-greeting-2.yaml
 ./deploy.sh
