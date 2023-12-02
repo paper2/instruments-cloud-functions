@@ -5,7 +5,7 @@ import (
 	"os"
 
 	// Blank-import the function package so the init() runs
-	_ "github.com/paper2/instruments-cloud-functions/cloud-functions/greeting"
+	_ "github.com/paper2/instruments-cloud-functions/greeting"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
 )

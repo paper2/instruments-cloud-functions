@@ -1,0 +1,3 @@
+OTEL_SERVICE_NAME: greeting-2
+# OTel Collector Endpoint on Cloud Run
+OTEL_EXPORTER_OTLP_ENDPOINT: <openTelemetry-collector-url> # EX) https://collector-qdnghk4e7a-an.a.run.app
