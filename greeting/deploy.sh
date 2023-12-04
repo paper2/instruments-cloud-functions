@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_ID=instruments-cloud-function
+PROJECT_ID=<your-project-id>
 
 function deploy() {
   local function_name=$1

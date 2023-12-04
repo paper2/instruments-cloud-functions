@@ -1,9 +1,11 @@
 # OpenTelemetry Go Cloud Functions Example
-This is an example of OpenTelemetry Go Google Cloud Functions HTTP trigger.
+This is an example of OpenTelemetry Go Google Cloud Functions triggerd by HTTP.
 
 # Prerequisites
-- Docker
 - Create a project on Google Cloud Platform
+- Install
+  - gcloud
+  - docker
 
 # Deploy
 ## Deploy OpenTelemetry Collector
