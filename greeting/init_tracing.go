@@ -2,7 +2,6 @@ package greeting
 
 import (
 	"context"
-	"log"
 	"os"
 
 	"go.opentelemetry.io/otel"
@@ -14,33 +13,37 @@ import (
 	sdk "go.opentelemetry.io/otel/sdk/trace"
 )
 
+// InitTracing initializes tracing.
 func InitTracing() *sdk.TracerProvider {
 	var opts []otlptracehttp.Option
 	if localOnly := os.Getenv("LOCAL_ONLY"); localOnly == "true" {
+		// In local environment, TLS is not set up.
 		opts = append(opts, otlptracehttp.WithInsecure())
 	}
 
 	client := otlptracehttp.NewClient(opts...)
 	exporter, err := otlptrace.New(context.Background(), client)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	resources, err := resource.New(
 		context.Background(),
 		resource.WithHost(),
 		resource.WithAttributes(
-		// Cusom attributes
+		// Custom attributes
 		),
 	)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	tp := trace.NewTracerProvider(
 		trace.WithBatcher(exporter),
 		trace.WithResource(resources),
 	)
+
+	// Set the global TraceProvider to the SDK's TraceProvider.
 	otel.SetTracerProvider(tp)
 
 	// W3C Trace Context propagator

@@ -41,7 +41,7 @@ curl https://asia-northeast1-instruments-cloud-function.cloudfunctions.net/greet
 - check trace by Cloud Trace UI
     - Access https://console.cloud.google.com/traces/traces
 
-![Alt text](image.png)
+![Alt text](img/image.png)
 
 # Local Development
 ## termianl1 - start jager all-in-one
@@ -84,4 +84,4 @@ Hiya!
 
 - Access http://localhost:16686/search
 
-![Alt text](image-1.png)
+![Alt text](img/image-1.png)

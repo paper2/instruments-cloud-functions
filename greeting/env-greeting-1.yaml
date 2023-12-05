@@ -2,4 +2,4 @@ OTEL_SERVICE_NAME: greeting-1
 # Cloud Functions Endpoint for greeting-2
 NEXT_ENDPOINT: https://asia-northeast1-<your-project-id>.cloudfunctions.net/greeting-2
 # OTel Collector Endpoint on Cloud Run
-OTEL_EXPORTER_OTLP_ENDPOINT: <openTelemetry-collector-url> # EX) https://collector-qdnghk4e7a-an.a.run.app
+OTEL_EXPORTER_OTLP_ENDPOINT: <otel-collector-url> # EX) https://collector-qdnghk4e7a-an.a.run.app

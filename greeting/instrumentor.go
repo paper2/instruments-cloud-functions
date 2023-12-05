@@ -16,6 +16,7 @@ type Flush interface {
 
 type HttpHandler = func(w http.ResponseWriter, r *http.Request)
 
+// InstrumentedHandler wraps the function with OpenTelemetry instrumentation.
 func InstrumentedHandler(functionName string, function HttpHandler, flusher Flush) HttpHandler {
 	opts := []trace.SpanStartOption{
 		// customizable span attributes
@@ -31,7 +32,9 @@ func InstrumentedHandler(functionName string, function HttpHandler, flusher Flus
 		// call the actual handler
 		handler.ServeHTTP(w, r)
 
-		// flush spans
+		// NOTE: ForceFlush() may extend the function's duration. It must be used carefully.
+		//       If ForceFlush() is not called, spans are send on background.
+		//       Backgraound tasks are not recommended in Cloud Functions. Span data sometimes get lost.
 		err := flusher.ForceFlush(r.Context())
 		if err != nil {
 			log.Printf("failed to flush spans: %v", err)

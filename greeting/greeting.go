@@ -14,16 +14,19 @@ import (
 
 func init() {
 	// NOTE: Usually TraceProvider should call Shutdown() at the end of the program.
-	//       It is mitigted by using ForceFlush() in InstrumentedHandler.
+	//       It is difficult to do so in Cloud Functions.
+	//       This issue can be mitigated by using ForceFlush() to flush spans.
 	tracerProvider := InitTracing()
 	handler := InstrumentedHandler("greeting", greeting, tracerProvider)
 	functions.HTTP("Greeting", handler)
 }
 
-// greetingHTTP is an HTTP Cloud Function.
+// greeting is the function's core logic.
+// It resoponses "Hiya!" and calls the next function if NEXT_ENDPOINT is set.
 func greeting(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hiya!")
-	// sleep for extend span duration
+
+	// sleep for extending the span's duration
 	time.Sleep(100 * time.Millisecond)
 
 	err := greetNext(r.Context())
@@ -41,11 +44,14 @@ func greetNext(ctx context.Context) error {
 		return nil
 	}
 
+	// call the next function.
+	// otelhttp sends a trace context to the next function.
 	res, err := otelhttp.Get(ctx, next)
 	if err != nil {
 		return err
 	}
 
+	// Must close the response body to avoid leaking connections.
 	err = res.Body.Close()
 	if err != nil {
 		return err
