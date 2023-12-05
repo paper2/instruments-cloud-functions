@@ -50,7 +50,7 @@ curl https://asia-northeast1-instruments-cloud-function.cloudfunctions.net/greet
 docker compose up
 ```
 
-## termianl2 - start cloud function
+## termianl2 - start cloud function (greeting-1)
 
 ```bash
 cd greeting
@@ -60,7 +60,7 @@ export NEXT_ENDPOINT=http://localhost:8081
 FUNCTION_TARGET=Greeting LOCAL_ONLY=true go run cmd/main.go
 ```
 
-## termianl3 - start cloud function
+## termianl3 - start cloud function (greeting-2)
 
 ```bash
 cd greeting
