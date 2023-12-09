@@ -13,7 +13,7 @@ import (
 )
 
 func init() {
-	// NOTE: Usually TraceProvider should call Shutdown() at the end of the program.
+	// NOTE: Usually TracerProvider should call Shutdown() at the end of the program.
 	//       It is difficult to do so in Cloud Functions.
 	//       This issue can be mitigated by using ForceFlush() to flush spans.
 	tracerProvider := InitTracing()
