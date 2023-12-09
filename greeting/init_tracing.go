@@ -43,7 +43,7 @@ func InitTracing() *sdk.TracerProvider {
 		trace.WithResource(resources),
 	)
 
-	// Set the global TraceProvider to the SDK's TraceProvider.
+	// Set the global TracerProvider to the SDK's TracerProvider.
 	otel.SetTracerProvider(tp)
 
 	// W3C Trace Context propagator

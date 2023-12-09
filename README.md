@@ -11,10 +11,11 @@ This is an example of OpenTelemetry Go Google Cloud Functions triggerd by HTTP.
 ## Deploy OpenTelemetry Collector
 
 ```bash
-cd otel-collector
+cd collector
 # Set your project id
 vi deploy.sh 
 ./deploy.sh
+cd ..
 ```
 
 Save URL of the deployed OpenTelemetry collector.
@@ -26,6 +27,8 @@ cd greeting
 # Set your project id and OpenTelemetry collector URL
 vi env-greeting-1.yaml
 vi env-greeting-2.yaml
+# Set your project id
+vi deploy.sh
 ./deploy.sh
 ```
 
