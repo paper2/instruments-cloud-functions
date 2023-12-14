@@ -34,7 +34,7 @@ func InstrumentedHandler(functionName string, function HttpHandler, flusher Flus
 
 		// NOTE: ForceFlush() may extend the function's duration. It must be used carefully.
 		//       If ForceFlush() is not called, spans are send on background.
-		//       Backgraound tasks are not recommended in Cloud Functions. Span data sometimes get lost.
+		//       Background tasks are not recommended in Cloud Functions. Span data sometimes get lost.
 		err := flusher.ForceFlush(r.Context())
 		if err != nil {
 			log.Printf("failed to flush spans: %v", err)
