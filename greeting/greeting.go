@@ -22,7 +22,7 @@ func init() {
 }
 
 // greeting is the function's core logic.
-// It resoponses "Hiya!" and calls the next function if NEXT_ENDPOINT is set.
+// It responses "Hiya!" and calls the next function if NEXT_ENDPOINT is set.
 func greeting(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hiya!")
 
@@ -40,7 +40,7 @@ func greeting(w http.ResponseWriter, r *http.Request) {
 func greetNext(ctx context.Context) error {
 	next := os.Getenv("NEXT_ENDPOINT")
 	if next == "" {
-		log.Println("I have no freinds :(")
+		log.Println("I have no friends :(")
 		return nil
 	}
 
